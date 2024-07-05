@@ -2,6 +2,7 @@ import React from "react";
 import Google from "../Img/google.png"
 import Facebook from "../Img/facebook.png"
 import Github from "../Img/github.png"
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const google=()=>{
@@ -26,6 +27,7 @@ const Login = () => {
           </label>
           <input className="border ml-2 mr-2" type="text" placeholder="Password" />
           <button className="submit border rounded-lg bg-slate-400 w-24 ml-2 mt-3 ">Login</button>
+          <Link to="/signup">don't have a account ?</Link>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import session from "express-session";
 import authRoute from "./routes/auth.js"
 import "./passport.js"
 import dotenv from "dotenv"
+import connecttomongodb from "./db/connecttomongodb.js";
 dotenv.config()
 const PORT =process.env.PORT || 3900
 
@@ -33,6 +34,7 @@ res.send("hello")
 console.log("hello")
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, async() => {
+  await connecttomongodb();
   console.log(`server running on port ${PORT}`);
 });

@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import { useEffect, useState } from "react";
+import Signup from "./pages/Signup.jsx";
 
 function App() {
   const [AuthUser, setAuthUser] = useState(null);
@@ -36,6 +37,7 @@ function App() {
   return (
     <>
       <Navbar AuthUser={AuthUser} />
+      {/* <Signup/> */}
       <Routes>
         <Route
           exact
@@ -46,6 +48,8 @@ function App() {
           exact
           path="/login"
           element={AuthUser ? <Navigate to="/" /> : <Login />}
+        />
+        <Route exact path="/signup" element={<Signup/>}
         />
         <Route path="/*" element={<div className="">missing</div>} />
       </Routes>
