@@ -10,7 +10,6 @@ route.get("/login/success", (req, res) => {
       success: true,
       message: "successfull",
       user: req.user,
-      //   cookies: req.cookies
     });
   }
 });
@@ -20,10 +19,22 @@ route.get("/login/failed", (req, res) => {
     message: "failure",
   });
 });
-route.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect(CLIENT_URL);
+route.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    console.log("working logout");
+   req.session.destroy((err)=>{
+    if(err){
+      return next(err)
+    }
+   })
+   res.clearCookie("connect.sid")
+    res.redirect(CLIENT_URL); // Redirect after logout
+  });
 });
+
 route.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
 route.get(

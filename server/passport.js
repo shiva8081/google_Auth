@@ -15,7 +15,7 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, done) {
       console.log("Google profile:", profile); // Debugging log
-      return null, profile;
+      return done(null, profile);
     }
   )
 );
