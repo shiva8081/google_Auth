@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
+    const [Input, setInput] = useState({
+        fullname:"",
+        username:"",
+        phone:"",
+        password:"",
+        confirmpassword:""
+    });
+     
+
   const create = (e) => {
     e.preventDefault();
   };
@@ -11,13 +20,13 @@ const Signup = () => {
         <form onSubmit={create} className="flex flex-col gap-5 p-5">
           <div className="flex flex-col">
             <label>fullname : </label>
-            <input className="border" type="text" placeholder="fullname" />
+            <input className="border" type="text" placeholder="fullname" value={Input.fullname} onChange={(e)=>setInput({...Input,fullname:e.target.value})} />
           </div>
-          <div div className="flex flex-col">
+          <div  className="flex flex-col">
             <label>Username : </label>
-            <input className="border" type="text" placeholder="Username" />
+            <input className="border" type="text" placeholder="Username" value={Input.username} onChange={(e)=>setInput({...Input,username:e.target.value})} />
           </div>
-          <div div className="flex flex-col">
+          <div className="flex flex-col">
             <label>phone no. :</label>
             <input
               className="border"
@@ -25,18 +34,20 @@ const Signup = () => {
               pattern="[0-9]{10}"
               title="Phone number must be 10 digits"
               placeholder="Phone number"
+              value={Input.phone} onChange={(e)=>setInput({...Input,phone:e.target.value})}
             />
           </div>
-          <div div className="flex flex-col">
+          <div  className="flex flex-col">
             <label>Password : </label>
-            <input className="border" type="password" placeholder="password" />
+            <input className="border" type="password" placeholder="password" value={Input.password} onChange={(e)=>setInput({...Input,password:e.target.value})} />
           </div>
-          <div div className="flex flex-col">
+          <div  className="flex flex-col">
             <label>confirm password : </label>
             <input
               className="border"
               type="password"
               placeholder="confirm password"
+              value={Input.confirmpassword} onChange={(e)=>setInput({...Input,confirmpassword:e.target.value})}
             />
           </div>
           <div className="flex justify-between">
