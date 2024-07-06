@@ -32,7 +32,7 @@ app.use(
 );
 
 app.use("/auth", authRoute);
-app.use("/auth",authSignup)
+app.use("/api/auth",authSignup)
 
 app.listen(PORT, async () => {
   await connecttomongodb();

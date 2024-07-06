@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useSignup from "../hook/useSignup";
 
 const Signup = () => {
+  const{signup} =useSignup();
     const [Input, setInput] = useState({
         fullname:"",
         username:"",
@@ -11,8 +13,9 @@ const Signup = () => {
     });
      
 
-  const create = (e) => {
+  const create = async(e) => {
     e.preventDefault();
+    await signup(Input)
   };
   return (
     <div className="op h-screen w-screen flex justify-center ">
