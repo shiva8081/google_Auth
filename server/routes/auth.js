@@ -12,6 +12,9 @@ route.get("/login/success", (req, res) => {
       user: req.user,
     });
   }
+  else{
+    res.json("no user login first")
+  }
 });
 route.get("/login/failed", (req, res) => {
   res.status(401).json({
