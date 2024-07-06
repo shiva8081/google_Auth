@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 import useSignup from "../hook/useSignup";
 
 const Signup = () => {
-  const{signup} =useSignup();
-    const [Input, setInput] = useState({
-        fullname:"",
-        username:"",
-        phone:"",
-        password:"",
-        confirmpassword:""
-    });
-     
+  const { signup } = useSignup();
+  const [Input, setInput] = useState({
+    fullname: "",
+    username: "",
+    phone: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
 
-  const create = async(e) => {
+  const create = async (e) => {
     e.preventDefault();
-    await signup(Input)
+    await signup(Input);
   };
   return (
     <div className="op h-screen w-screen flex justify-center ">
@@ -23,11 +23,36 @@ const Signup = () => {
         <form onSubmit={create} className="flex flex-col gap-5 p-5">
           <div className="flex flex-col">
             <label>fullname : </label>
-            <input className="border" type="text" placeholder="fullname" value={Input.fullname} onChange={(e)=>setInput({...Input,fullname:e.target.value})} />
+            <input
+              className="border"
+              type="text"
+              placeholder="fullname"
+              value={Input.fullname}
+              onChange={(e) => setInput({ ...Input, fullname: e.target.value })}
+              required
+            />
           </div>
-          <div  className="flex flex-col">
+          <div className="flex flex-col">
             <label>Username : </label>
-            <input className="border" type="text" placeholder="Username" value={Input.username} onChange={(e)=>setInput({...Input,username:e.target.value})} />
+            <input
+              className="border"
+              type="text"
+              placeholder="Username"
+              value={Input.username}
+              onChange={(e) => setInput({ ...Input, username: e.target.value })}
+              required
+            />
+          </div>
+          <div className="flex flex-col">
+            <label>Email : </label>
+            <input
+              className="border"
+              type="text"
+              placeholder="Username"
+              value={Input.email}
+              onChange={(e) => setInput({ ...Input, email: e.target.value })}
+              required
+            />
           </div>
           <div className="flex flex-col">
             <label>phone no. :</label>
@@ -37,20 +62,33 @@ const Signup = () => {
               pattern="[0-9]{10}"
               title="Phone number must be 10 digits"
               placeholder="Phone number"
-              value={Input.phone} onChange={(e)=>setInput({...Input,phone:e.target.value})}
+              value={Input.phone}
+              onChange={(e) => setInput({ ...Input, phone: e.target.value })}
+              required
             />
           </div>
-          <div  className="flex flex-col">
+          <div className="flex flex-col">
             <label>Password : </label>
-            <input className="border" type="password" placeholder="password" value={Input.password} onChange={(e)=>setInput({...Input,password:e.target.value})} />
+            <input
+              className="border"
+              type="password"
+              placeholder="password"
+              value={Input.password}
+              onChange={(e) => setInput({ ...Input, password: e.target.value })}
+              required
+            />
           </div>
-          <div  className="flex flex-col">
+          <div className="flex flex-col">
             <label>confirm password : </label>
             <input
               className="border"
               type="password"
               placeholder="confirm password"
-              value={Input.confirmpassword} onChange={(e)=>setInput({...Input,confirmpassword:e.target.value})}
+              value={Input.confirmpassword}
+              onChange={(e) =>
+                setInput({ ...Input, confirmpassword: e.target.value })
+              }
+              required
             />
           </div>
           <div className="flex justify-between">

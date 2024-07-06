@@ -1,6 +1,8 @@
+// import { useNavigate } from "react-router-dom";
 
 
 const useLogin = () => {
+    // const navigate=useNavigate()
   const login=async({username,password})=>{
     try {
         const res = await fetch("http://localhost:3600/api/auth/login", {
@@ -21,6 +23,7 @@ const useLogin = () => {
           console.log("Login failed");
           // Handle failed login (e.g., display error message)
         }
+        // navigate("/");  // Redirect to home on successful login
       } catch (error) {
         console.log("Error during login:", error.message);
         // Handle network or other errors

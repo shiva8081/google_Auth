@@ -3,6 +3,7 @@ const useSignup = () => {
     fullname,
     username,
     password,
+    email,
     confirmpassword,
     phone,
   }) => {
@@ -17,6 +18,7 @@ const useSignup = () => {
           password,
           confirmpassword,
           phone,
+          email,
         }),
       });
 

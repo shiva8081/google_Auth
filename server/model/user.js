@@ -20,6 +20,11 @@ const user =new mongoose.Schema({
     required: true,
     minlength: 6,
   },
+  email:{
+    type:"string",
+    required:true,
+    unique:true
+  }
 });
 
  const User = mongoose.model("User", user);

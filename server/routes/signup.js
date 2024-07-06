@@ -6,7 +6,7 @@ const route = express.Router();
 
 route.post("/signup", async (req, res) => {
   try {
-    const { fullname, username, password, confirmpassword, phone } = req.body;
+    const { fullname, username, password, confirmpassword, phone,email } = req.body;
 
     //passord
     if (password !== confirmpassword) {
@@ -17,7 +17,7 @@ route.post("/signup", async (req, res) => {
       // console.log(2)
       return res.status(400).json({ error: "user already exist" });
     }
-    const newuser = new User({ fullname, username, phone, password });
+    const newuser = new User({ fullname, username, phone, password ,email});
     await newuser.save();
 
     req.login(newuser, (err) => {

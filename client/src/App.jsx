@@ -49,7 +49,7 @@ function App() {
           path="/login"
           element={AuthUser ? <Navigate to="/" /> : <Login />}
         />
-        <Route exact path="/signup" element={<Signup/>}
+        <Route exact path="/signup" element={AuthUser?<Navigate to="/"/> :<Signup/>}
         />
         <Route path="/*" element={<div className="">missing</div>} />
       </Routes>
