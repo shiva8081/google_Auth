@@ -5,35 +5,10 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import { useEffect, useState } from "react";
 import Signup from "./pages/Signup.jsx";
+import { usecontext } from "./context/UserContext.jsx";
 
 function App() {
-  const [AuthUser, setAuthUser] = useState(null);
-  
-  // useEffect(() => {
-  //   const getuser = async () => {
-  //     try {
-  //       const res = await fetch("http://localhost:3600/auth/login/success", {
-  //         method: "GET",
-  //         credentials: "include",
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/json",
-  //         },
-  //       });
-  //         if(res.status===200){
-  //           const data = await res.json();
-  //           console.log(data)
-  //           // console.log(AuthUser.photos[0])
-  //           setAuthUser(data.user);
-  //         }
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-  //   getuser();
-  // }, []);
-
-
+  const {AuthUser}=usecontext();
   return (
     <>
       <Navbar AuthUser={AuthUser} />
@@ -49,7 +24,10 @@ function App() {
           path="/login"
           element={AuthUser ? <Navigate to="/" /> : <Login />}
         />
-        <Route exact path="/signup" element={AuthUser?<Navigate to="/"/> :<Signup/>}
+        <Route
+          exact
+          path="/signup"
+          element={AuthUser ? <Navigate to="/" /> : <Signup />}
         />
         <Route path="/*" element={<div className="">missing</div>} />
       </Routes>

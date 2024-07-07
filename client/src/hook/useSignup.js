@@ -1,4 +1,7 @@
+import { usecontext } from "../context/UserContext.jsx";
+
 const useSignup = () => {
+    const {getuser}=usecontext()
   const signup = async ({
     fullname,
     username,
@@ -25,6 +28,7 @@ const useSignup = () => {
       if (res.status === 201) {
         console.log(res.user)
         const data = await res.json();
+        getuser()
         console.log(data);
       }
     } catch (error) {

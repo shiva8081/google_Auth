@@ -1,7 +1,10 @@
 // import { useNavigate } from "react-router-dom";
 
+import { usecontext } from "../context/UserContext.jsx";
+
 
 const useLogin = () => {
+    const {getuser}=usecontext()
     // const navigate=useNavigate()
   const login=async({username,password})=>{
     try {
@@ -17,6 +20,7 @@ const useLogin = () => {
   
         if (res.status === 200) {
           const data = await res.json();
+          getuser()
           console.log("Login success", data);
           
           // Handle successful login (e.g., redirect or update state)
