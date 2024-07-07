@@ -1,8 +1,10 @@
 import express from "express";
 import passport from "passport";
 const route = express.Router();
+import dotenv from "dotenv";
 
-const CLIENT_URL = "http://localhost:5173/";
+dotenv.config(); // Load environment variables
+const CLIENT_URL = process.env.CLIENT_URL;
 
 route.get("/login/success", (req, res) => {
   if (req.user) {

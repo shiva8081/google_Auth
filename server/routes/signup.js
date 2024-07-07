@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../model/user.js";
 import passport from "passport";
+import bcrypt from "bcrypt"
 
 const route = express.Router();
 
@@ -17,7 +18,9 @@ route.post("/signup", async (req, res) => {
       // console.log(2)
       return res.status(400).json({ error: "user already exist" });
     }
-    const newuser = new User({ fullname, username, phone, password ,email});
+    const salt = await bcrypt.genSalt(10)
+    const hashpassword=await bcrypt.hash(password,salt)
+    const newuser = new User({ fullname, username, phone, password:hashpassword ,email});
     await newuser.save();
 
     req.login(newuser, (err) => {

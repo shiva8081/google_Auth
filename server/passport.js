@@ -16,7 +16,7 @@ passport.use(
       callbackURL: "http://localhost:3600/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log("Google profile:", profile); // Debugging log
+      console.log("Google profile:", profile,accessToken,refreshToken); // Debugging log
       return done(null, profile);
     }
   )
@@ -32,8 +32,9 @@ passport.use(
           return done(null, false, { message: "Incorrect username." });
         }
         // Compare passwords directly
-        if (password !== user.password) {
-          return res.status(400).json({ message: "Incorrect password" });
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return done(null, false, { message: "Incorrect password." });
         }
         return done(null, user);
       } catch (err) {

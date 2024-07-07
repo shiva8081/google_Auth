@@ -18,6 +18,7 @@ const useLogin = () => {
         if (res.status === 200) {
           const data = await res.json();
           console.log("Login success", data);
+          
           // Handle successful login (e.g., redirect or update state)
         } else {
           console.log("Login failed");

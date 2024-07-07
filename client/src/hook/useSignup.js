@@ -23,6 +23,7 @@ const useSignup = () => {
       });
 
       if (res.status === 201) {
+        console.log(res.user)
         const data = await res.json();
         console.log(data);
       }
