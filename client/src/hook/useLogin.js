@@ -18,8 +18,9 @@ const useLogin = () => {
           }),
         });
   
+        const data = await res.json();
+        console.log(data)
         if (res.status === 200) {
-          const data = await res.json();
           getuser()
           console.log("Login success", data);
           

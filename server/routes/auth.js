@@ -8,6 +8,7 @@ const CLIENT_URL = process.env.CLIENT_URL;
 
 route.get("/login/success", (req, res) => {
   if (req.user) {
+    
     res.status(200).json({
       success: true,
       message: "successfull",
@@ -18,6 +19,10 @@ route.get("/login/success", (req, res) => {
     res.json("no user login first")
   }
 });
+
+
+
+
 route.get("/login/failed", (req, res) => {
   res.status(401).json({
     success: false,

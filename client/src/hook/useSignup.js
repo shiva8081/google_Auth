@@ -1,7 +1,8 @@
 import { usecontext } from "../context/UserContext.jsx";
 
 const useSignup = () => {
-    const {getuser}=usecontext()
+    
+  const { getuser } = usecontext();
   const signup = async ({
     fullname,
     username,
@@ -25,18 +26,20 @@ const useSignup = () => {
         }),
       });
 
+      const data = await res.json();
+    //   console.log(data);
       if (res.status === 201) {
-        console.log(res.user)
-        const data = await res.json();
-        getuser()
-        console.log(data);
+        getuser();
+        // console.log(data);
       }
+      return data;
     } catch (error) {
+    //   console.log(8);
       console.log("error in signup page", error.message);
     }
   };
 
-  return {signup};
+  return { signup };
 };
 
 export default useSignup;

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useSignup from "../hook/useSignup";
 
 const Signup = () => {
+  const [error, seterror] = useState();
   const { signup } = useSignup();
   const [Input, setInput] = useState({
     fullname: "",
@@ -13,13 +14,19 @@ const Signup = () => {
     confirmpassword: "",
   });
 
+  
   const create = async (e) => {
     e.preventDefault();
-    await signup(Input);
+    const data = await signup(Input);
+    if(data?.error){
+      console.log(data)
+        seterror(data.error);
+    }
   };
   return (
     <div className="op h-screen w-screen flex justify-center ">
       <div className=" w-1/2 h-fit top-32 relative border-2 shadow-2xl rounded-lg ">
+        <p>{error}</p>
         <form onSubmit={create} className="flex flex-col gap-5 p-5">
           <div className="flex flex-col">
             <label>fullname : </label>

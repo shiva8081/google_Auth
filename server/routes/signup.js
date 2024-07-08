@@ -11,12 +11,14 @@ route.post("/signup", async (req, res) => {
 
     //passord
     if (password !== confirmpassword) {
-      return res.status(400).json({ message: "password not match" });
+      return res.status(400).send({ error: "password not match" });
     }
-    const user = await User.findOne({ username });
+    const user = await User.findOne({
+      $or: [{ username }, {  email }]
+    });
     if (user) {
       // console.log(2)
-      return res.status(400).json({ error: "user already exist" });
+      return res.status(400).send({ error: "user already exist" });
     }
     const salt = await bcrypt.genSalt(10)
     const hashpassword=await bcrypt.hash(password,salt)

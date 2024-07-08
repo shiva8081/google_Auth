@@ -3,12 +3,11 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
-import { useEffect, useState } from "react";
 import Signup from "./pages/Signup.jsx";
 import { usecontext } from "./context/UserContext.jsx";
 
 function App() {
-  const {AuthUser}=usecontext();
+  const { AuthUser } = usecontext();
   return (
     <>
       <Navbar AuthUser={AuthUser} />

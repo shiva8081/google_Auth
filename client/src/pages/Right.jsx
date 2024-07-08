@@ -14,7 +14,7 @@ const Right = () => {
   };
 
   return (
-    <div className="pr-10 pl-14 flex flex-col w-1/2 h-full justify-center">
+    <div className="pr-10 pl-14 flex flex-col w-1/2 h-full justify-center ">
       <label className="ml-2 mr-2">
         <span className="text-base label-text">Username :</span>
       </label>
@@ -41,7 +41,7 @@ const Right = () => {
       >
         Login
       </button>
-      <Link to="/signup">Don't have an account?</Link>
+      <Link className="mt-4 ml-2 text-blue-400" to="/signup">Don't have an account?</Link>
     </div>
   );
 };
