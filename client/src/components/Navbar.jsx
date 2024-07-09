@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const Navbar = ({AuthUser}) => {
-  
+ 
   const logout=()=>{
     console.log("1")
     window.open("http://localhost:3600/auth/logout","_self")
@@ -18,6 +18,7 @@ const Navbar = ({AuthUser}) => {
         ( <ul className="list flex space-x-5 mr-5">
           <li className=""><img className='w-[32px] h-[32px] rounded-full' src="https://avatar.iran.liara.run/public" alt="hello" /></li>
           <li className="">shiva</li>
+          <li className="cursor-pointer "  ><Link to="/reset">Reset Password</Link></li>
           <li className="cursor-pointer "onClick={logout} >logout</li>
         </ul>)
         :

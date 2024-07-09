@@ -8,11 +8,15 @@ const CLIENT_URL = process.env.CLIENT_URL;
 
 route.get("/login/success", (req, res) => {
   if (req.user) {
-    
+    const cookie=req.cookies["connect.sid"]
+    console.log("User:", req.user);
+  console.log("Authenticated:", req.isAuthenticated());
     res.status(200).json({
       success: true,
       message: "successfull",
       user: req.user,
+      sessionID:req.sessionID,
+      cookie:cookie
     });
   }
   else{

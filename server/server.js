@@ -1,20 +1,24 @@
 import express from "express";
 import passport from "passport";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import session from "express-session";
 import authRoute from "./routes/auth.js";
 import authSignup from "./routes/signup.js"
+import authReset from "./routes/reset.js"
 import "./passport.js";
 import dotenv from "dotenv";
 import connecttomongodb from "./db/connecttomongodb.js";
-import User from "./model/user.js";
+// import User from "./model/user.js";
 dotenv.config();
 const PORT = process.env.PORT || 3900;
+const SECRET=process.env.SECRET;
 
 const app = express();
+app.use(cookieParser())
 app.use(
   session({
-    secret: "shivasecret",
+    secret: SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
@@ -32,7 +36,8 @@ app.use(
 );
 
 app.use("/auth", authRoute);
-app.use("/api/auth",authSignup)
+app.use("/api/auth",authSignup);
+app.use("/api/reset",authReset)
 
 app.listen(PORT, async () => {
   await connecttomongodb();
