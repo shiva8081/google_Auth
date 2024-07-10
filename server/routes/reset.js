@@ -6,8 +6,8 @@ import User from "../model/user.js";
 const route = express.Router();
 
 route.post("/pass", async (req,res) => {
-    
-    console.log(req)
+    console.log(1)
+    console.log("hyyyyy",req)
   console.log("User:", req.user);
   console.log("Authenticated:", req.isAuthenticated());
   console.log(1);

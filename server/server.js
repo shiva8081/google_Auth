@@ -9,7 +9,7 @@ import authReset from "./routes/reset.js"
 import "./passport.js";
 import dotenv from "dotenv";
 import connecttomongodb from "./db/connecttomongodb.js";
-// import User from "./model/user.js";
+
 dotenv.config();
 const PORT = process.env.PORT || 3900;
 const SECRET=process.env.SECRET;
@@ -42,6 +42,6 @@ app.use("/api/reset",authReset);
 
 app.listen(PORT, async () => {
   await connecttomongodb();
-  // await User.create({fullname:"shiva yadav",username:"shiva80855",phone:"7253808173",password:"qwertyuiop"})
+
   console.log(`server running on port ${PORT}`);
 });

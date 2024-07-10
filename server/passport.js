@@ -1,5 +1,5 @@
 import passport from "passport";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as LocalStrategy } from "passport-local";
 import dotenv from "dotenv";
@@ -16,32 +16,32 @@ passport.use(
       callbackURL: "http://localhost:3600/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log("Google profile:", profile,accessToken,refreshToken); // Debugging log
+      console.log("Google profile:", profile); // Debugging log
       return done(null, profile);
     }
   )
 );
+
 passport.use(
   new LocalStrategy(
     { usernameField: "username", passwordField: "password" },
     async (username, password, done) => {
       try {
-        console.log(1)
         // Find the user by username
         const user = await User.findOne({ username });
-        console.log(2)
+
         if (!user) {
           return done(null, false, { message: "Incorrect username." });
         }
-        console.log(3)
+
         // Compare passwords directly
         const isMatch = await bcrypt.compare(password, user.password);
-        console.log(4)
+
         if (!isMatch) {
           return done(null, false, { message: "Incorrect password." });
         }
-        console.log(5)
-        console.log(user)
+
+        console.log(user);
         return done(null, user);
       } catch (err) {
         return done(err);

@@ -20,7 +20,9 @@ const useReset = () => {
             }),
             
           });
+          console.log(1)
           const data =await res.json();
+          console.log(2)
           if(res.status===200){
             console.log("password reset succesfull",data)
 
