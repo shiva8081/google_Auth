@@ -29,9 +29,11 @@ route.post("/signup", async (req, res) => {
       if (err) {
         return next(err);
       }
+      console.log(req.user)
       return res
         .status(201)
-        .json({ message: "User created successfully", user: newuser });
+        .json({ message: "User created successfully", user: newuser })
+        
     });
   } catch (error) {
     res.status(400).json({ message: "error in signup" });
