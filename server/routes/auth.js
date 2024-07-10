@@ -17,7 +17,7 @@ route.get("/login/success", (req, res) => {
       message: "successfull",
       user: req.user,
       sessionID:req.sessionID,
-      cookie:cookie
+      // cookie:cookie
     });
   }
   else{

@@ -26,16 +26,22 @@ passport.use(
     { usernameField: "username", passwordField: "password" },
     async (username, password, done) => {
       try {
+        console.log(1)
         // Find the user by username
         const user = await User.findOne({ username });
+        console.log(2)
         if (!user) {
           return done(null, false, { message: "Incorrect username." });
         }
+        console.log(3)
         // Compare passwords directly
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log(4)
         if (!isMatch) {
           return done(null, false, { message: "Incorrect password." });
         }
+        console.log(5)
+        console.log(user)
         return done(null, user);
       } catch (err) {
         return done(err);
@@ -45,11 +51,11 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user);
 });
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (user, done) => {
   try {
-    const user = await User.findById(id);
+    // const user = await User.findById(id);
     done(null, user);
   } catch (err) {
     done(err, null);

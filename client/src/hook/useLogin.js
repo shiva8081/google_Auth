@@ -1,11 +1,11 @@
-// import { useNavigate } from "react-router-dom";
+
 
 import { usecontext } from "../context/UserContext.jsx";
 
 
 const useLogin = () => {
     const {getuser}=usecontext()
-    // const navigate=useNavigate()
+    
   const login=async({username,password})=>{
     try {
         const res = await fetch("http://localhost:3600/api/auth/login", {
@@ -17,7 +17,7 @@ const useLogin = () => {
             password: password,
           }),
         });
-  
+        
         const data = await res.json();
         console.log(data)
         if (res.status === 200) {
