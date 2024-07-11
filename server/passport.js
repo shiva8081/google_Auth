@@ -24,11 +24,11 @@ passport.use(
 
 passport.use(
   new LocalStrategy(
-    { usernameField: "username", passwordField: "password" },
-    async (username, password, done) => {
+    { usernameField: "email", passwordField: "password" },
+    async (email, password, done) => {
       try {
         // Find the user by username
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
 
         if (!user) {
           return done(null, false, { message: "Incorrect username." });

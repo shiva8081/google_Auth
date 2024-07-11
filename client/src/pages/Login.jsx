@@ -5,7 +5,7 @@ import useLogin from "../hook/useLogin.js";
 const Login = () => {
   const { login } = useLogin();
   const [Input, setInput] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -36,16 +36,16 @@ const Login = () => {
             <form className="space-y-6" onSubmit={submit}>
               <div>
                 <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Username
+                  Email address
                 </label>
                 <div className="mt-2">
                   <input
                     // type="email"
                     type="text"
-                    // autoComplete="email"
-                    value={Input.username}
+                    autoComplete="email"
+                    value={Input.email}
                     onChange={(e) =>
-                      setInput({ ...Input, username: e.target.value })
+                      setInput({ ...Input, email: e.target.value })
                     }
                     required
                     className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

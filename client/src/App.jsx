@@ -6,12 +6,15 @@ import Signup from "./pages/Signup.jsx";
 import { usecontext } from "./context/UserContext.jsx";
 import Reset from "./pages/Reset.jsx";
 import Login from "./pages/Login.jsx";
+import Nav from "./pages/Nav.jsx";
 
 function App() {
   const { AuthUser } = usecontext();
   return (
     <>
       <Navbar AuthUser={AuthUser} />
+      {/* <Nav/>
+      <Home/> */}
 
       <Routes>
         <Route
