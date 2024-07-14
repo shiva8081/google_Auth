@@ -1,5 +1,5 @@
 import express from "express";
-import passport from "passport";
+
 import bcrypt from "bcrypt";
 import User from "../model/user.js";
 

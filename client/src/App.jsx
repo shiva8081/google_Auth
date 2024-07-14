@@ -13,8 +13,6 @@ function App() {
   return (
     <>
       <Navbar AuthUser={AuthUser} />
-      {/* <Nav/>
-      <Home/> */}
 
       <Routes>
         <Route
