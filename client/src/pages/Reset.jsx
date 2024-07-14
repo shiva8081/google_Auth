@@ -1,13 +1,25 @@
 import { useState } from "react"
 import useReset from "../hook/useReset.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Reset() {
+    const navigate=useNavigate()
     const {reset}=useReset()
     const [Input, setInput] = useState({oldpassword:"",newpassword:"",confirmnewpassword:""});
 
     const handleclick=async(e)=>{
         e.preventDefault()
-        await reset(Input)
+        try {
+          const result = await reset(Input);
+          if (result.success) {
+              navigate("/");
+          } else {
+              console.log(result.error)
+          }
+      } catch (error) {
+          console.error("Error resetting password:", error);
+          
+      }
     }
 
   return (

@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import { usecontext } from "../context/UserContext.jsx";
 
 const useReset = () => {
@@ -7,7 +8,7 @@ const useReset = () => {
     getuser();
 
     try {
-      console.log(1);
+      
       const res = await fetch("http://localhost:3600/api/reset/pass", {
         method: "POST",
         credentials: "include",
@@ -18,13 +19,15 @@ const useReset = () => {
           confirmnewpassword,
         }),
       });
-      console.log(1);
+      
       const data = await res.json();
-      console.log(2);
-      if (res.status === 200) {
+    
+      if (data.message) {
         console.log("password reset succesfull", data);
+        return { success: true, message: data.message };
       } else {
-        console.log("password not reset");
+        console.log("Password not reset", data.error);
+        return { success: false, error: data.error };
       }
     } catch (error) {
       console.log("error in usereset ");

@@ -6,23 +6,19 @@ import User from "../model/user.js";
 const route = express.Router();
 
 route.post("/pass", async (req,res) => {
-    console.log(1)
-    console.log("hyyyyy",req)
-  console.log("User:", req.user);
-  console.log("Authenticated:", req.isAuthenticated());
-  console.log(1);
+
   if (!req.isAuthenticated()) {
     return res.status(401).send({ error: "user is not authenticated" });
   }
   const { oldpassword, newpassword, confirmnewpassword } = req.body;
-  console.log(oldpassword, newpassword, confirmnewpassword);
-  console.log(2);
+ 
+ 
   try {
-    console.log(3);
+   
     const user = await User.findById(req.user._id);
-    console.log(4);
+
     if (!user) return res.send({ error: "user not found " });
-    console.log(5);
+
 
     const isMatch = await bcrypt.compare(oldpassword, user.password);
     if (!isMatch) return res.send({ error: "old password not match" });
