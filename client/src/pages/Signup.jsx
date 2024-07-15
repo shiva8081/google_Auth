@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useSignup from "../hook/useSignup";
 
 const Signup = () => {
-  const [error, seterror] = useState();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [error, seterror] = useState("");
+  const [emailvalid, setemailvalid] = useState(true);
   const { signup } = useSignup();
   const [Input, setInput] = useState({
     fullname: "",
@@ -14,13 +16,20 @@ const Signup = () => {
     confirmpassword: "",
   });
 
-  
   const create = async (e) => {
     e.preventDefault();
-    const data = await signup(Input);
-    if(data?.error){
-      console.log(data)
+    const result = emailRegex.test(email);
+    console.log(result);
+
+    if (result) {
+      setemailvalid(true)
+      const data = await signup(Input);
+      if (data?.error) {
+        console.log(data);
         seterror(data.error);
+      }
+    } else {
+      setemailvalid(false);
     }
   };
   return (
@@ -31,6 +40,8 @@ const Signup = () => {
           <div className="flex flex-col">
             <label>fullname : </label>
             <input
+              id="fullname"
+              name="fullname"
               className="border"
               type="text"
               placeholder="fullname"
@@ -43,6 +54,8 @@ const Signup = () => {
             <label>Username : </label>
             <input
               className="border"
+              id="username"
+              name="username"
               type="text"
               placeholder="Username"
               value={Input.username}
@@ -54,17 +67,22 @@ const Signup = () => {
             <label>Email : </label>
             <input
               className="border"
+              id="email"
+              name="email"
               type="text"
-              placeholder="Username"
+              placeholder="Email"
               value={Input.email}
               onChange={(e) => setInput({ ...Input, email: e.target.value })}
               required
             />
+            {!emailvalid&& <p className="text-red-500">Enter a valid email</p>}
           </div>
           <div className="flex flex-col">
             <label>phone no. :</label>
             <input
               className="border"
+              id="phone"
+              name="phone"
               type="tel"
               pattern="[0-9]{10}"
               title="Phone number must be 10 digits"
@@ -78,6 +96,8 @@ const Signup = () => {
             <label>Password : </label>
             <input
               className="border"
+              id="password"
+              name="password"
               type="password"
               placeholder="password"
               value={Input.password}
@@ -89,6 +109,8 @@ const Signup = () => {
             <label>confirm password : </label>
             <input
               className="border"
+              id="confirm"
+              name="confirm"
               type="password"
               placeholder="confirm password"
               value={Input.confirmpassword}

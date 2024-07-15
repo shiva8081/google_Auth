@@ -40,8 +40,9 @@ const Login = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    // type="email"
-                    type="text"
+                    type="email"
+                    id="email"
+                    name="email"
                     autoComplete="email"
                     value={Input.email}
                     onChange={(e) =>
@@ -59,8 +60,10 @@ const Login = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    id="password"
+                    name="passowrd"
                     type="password"
-                    autoComplete="current-password"
+                    // autoComplete="current-password"
                     value={Input.password}
                     onChange={(e) =>
                       setInput({ ...Input, password: e.target.value })
@@ -84,7 +87,7 @@ const Login = () => {
 
               <div>
                 <button
-                onClick={submit}
+                  onClick={submit}
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
