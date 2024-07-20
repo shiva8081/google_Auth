@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import useSignup from "../hook/useSignup";
 
 const Signup = () => {
-  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const [error, seterror] = useState("");
-  // const [emailvalid, setemailvalid] = useState(true);
+
   const { signup } = useSignup();
   const [Input, setInput] = useState({
     fullname: "",
@@ -18,9 +17,6 @@ const Signup = () => {
 
   const create = async (e) => {
     e.preventDefault();
-    // const result = emailRegex.test(email);
-    // console.log(result);
-
     const data = await signup(Input);
     if (data?.error) {
       console.log(data);
@@ -70,7 +66,6 @@ const Signup = () => {
               onChange={(e) => setInput({ ...Input, email: e.target.value })}
               required
             />
-            {/* {!emailvalid&& <p className="text-red-500">Enter a valid email</p>} */}
           </div>
           <div className="flex flex-col">
             <label>phone no. :</label>

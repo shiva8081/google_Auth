@@ -4,29 +4,22 @@ const route = express.Router();
 import dotenv from "dotenv";
 import User from "../model/user.js";
 
-
 dotenv.config(); // Load environment variables
 const CLIENT_URL = process.env.CLIENT_URL;
 
 route.get("/login/success", (req, res) => {
   if (req.user) {
-    const cookie=req.cookies["connect.sid"]
-  
     res.status(200).json({
       success: true,
       message: "successfull",
       user: req.user,
-      sessionID:req.sessionID,
+      sessionID: req.sessionID,
       // cookie:cookie
     });
-  }
-  else{
-    res.json("no user login first")
+  } else {
+    res.json("no user login first");
   }
 });
-
-
-
 
 route.get("/login/failed", (req, res) => {
   res.status(401).json({
@@ -40,12 +33,12 @@ route.get("/logout", (req, res, next) => {
       return next(err);
     }
     console.log("working logout");
-   req.session.destroy((err)=>{
-    if(err){
-      return next(err)
-    }
-   })
-   res.clearCookie("connect.sid")
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err);
+      }
+    });
+    res.clearCookie("connect.sid");
     res.redirect(CLIENT_URL); // Redirect after logout
   });
 });
@@ -59,7 +52,5 @@ route.get(
     failureRedirect: "/login/failed",
   })
 );
-
-
 
 export default route;

@@ -6,6 +6,7 @@ import session from "express-session";
 import authRoute from "./routes/auth.js";
 import authSignup from "./routes/signup.js"
 import authReset from "./routes/reset.js"
+import authPost from "./routes/post.js"
 import "./passport.js";
 import dotenv from "dotenv";
 import connecttomongodb from "./db/connecttomongodb.js";
@@ -39,6 +40,7 @@ app.use(
 app.use("/auth", authRoute);
 app.use("/api/auth",authSignup);
 app.use("/api/reset",authReset);
+app.use("/api/post",authPost);
 
 app.listen(PORT, async () => {
   await connecttomongodb();

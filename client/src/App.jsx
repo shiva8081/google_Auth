@@ -7,6 +7,7 @@ import { usecontext } from "./context/UserContext.jsx";
 import Reset from "./pages/Reset.jsx";
 import Login from "./pages/Login.jsx";
 import Nav from "./pages/Nav.jsx";
+import Addpost from "./pages/Addpost.jsx";
 
 function App() {
   const { AuthUser } = usecontext();
@@ -35,6 +36,7 @@ function App() {
           path="/reset"
           element={AuthUser ? <Reset /> : <Navigate to="/" />}
         />
+        <Route exact path="/addpost" element={AuthUser?<Addpost/>:<Navigate to="/login"/> } />
         <Route path="/*" element={<div className="">missing</div>} />
       </Routes>
     </>
